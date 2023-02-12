@@ -8,8 +8,8 @@ from qiskit import QuantumCircuit, assemble, transpile
 # import basic plot tools
 from qiskit.visualization import plot_histogram
 
-# Constant oracle
 n = 1
+# Constant oracle
 # const_oracle = QuantumCircuit(n+1,n)
 # output = np.random.randint(2)
 # if output == 1:
@@ -46,7 +46,6 @@ else:
     for qubit in range(n):
         dj_circuit.cx(qubit, n)
     
-
 # Repeat H-gates
 for qubit in range(n):
     dj_circuit.h(qubit)
