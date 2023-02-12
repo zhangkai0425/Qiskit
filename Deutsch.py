@@ -10,17 +10,18 @@ from qiskit.visualization import plot_histogram
 
 # Constant oracle
 n = 1
-const_oracle = QuantumCircuit(n+1)
-output = np.random.randint(2)
-if output == 1:
-    const_oracle.x(n)
+# const_oracle = QuantumCircuit(n+1,n)
+# output = np.random.randint(2)
+# if output == 1:
+#     const_oracle.x(n)
 
-# Balenced_oracle
-balanced_oracle = QuantumCircuit(n+1)
-# Controlled-NOT gates
-for qubit in range(n):
-    balanced_oracle.cx(qubit, n)
-balanced_oracle.barrier()
+# # Balenced_oracle
+# balanced_oracle = QuantumCircuit(n+1,n)
+
+# # Controlled-NOT gates
+# for qubit in range(n):
+#     balanced_oracle.cx(qubit, n)
+# balanced_oracle.barrier()
 
 dj_circuit = QuantumCircuit(n+1,n)
 
@@ -33,7 +34,18 @@ dj_circuit.x(n)
 dj_circuit.h(n)
 
 # Add oracle
-dj_circuit.compose(const_oracle)
+# dj_circuit.compose(balanced_oracle)
+const = False
+if const == True:
+    # Constant oracle
+    output = np.random.randint(2)
+    if output == 1:
+        dj_circuit.x(n)
+else:
+    # Balanced_oracle
+    for qubit in range(n):
+        dj_circuit.cx(qubit, n)
+    
 
 # Repeat H-gates
 for qubit in range(n):
